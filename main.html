@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>n-back</title>
+        <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <style>
+          article, aside, dialog, figure, footer, header,
+          hgroup, menu, nav, section { display: block; }
+            /*
+            html {
+                background-color: #555;
+            }
+            */
+            body {
+                margin: 10px;
+                padding: 10px;
+            }
+        </style>
+        <script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+        <h3>memorize the answer</h3>
+        <h1>
+            <LABEL id="lblLeftQ">this is LeftQ </LABEL>
+            +
+            <LABEL id="lblRightQ">this is RightQ </LABEL>
+        </h1>
+        <h2><LABEL id="lblAsterisk">***</LABEL></h2>
+
+        <p>
+            <input type="button" value="1" id="btnOne">
+            <input type="button" value="2" id="btnTwo">
+            <input type="button" value="3" id="btnThree">
+            <input type="button" value="4" id="btnFour">
+            <input type="button" value="5" id="btnFive">
+        </p>
+        <p>
+            <input type="button" value="6" id="btnSix">
+            <input type="button" value="7" id="btnSeven">
+            <input type="button" value="8" id="btnEight">
+            <input type="button" value="9" id="btnNine">
+            <input type="button" value="0" id="btnZero">
+        </p>
+        
+        <p>time -> <label id="lblTime">00:00:00</label></p>
+        <p>currect count -> <label id="lblCurrectCount">0</label>/10</p>
+        <p>incurrect count -> <label id="lblIncurrectCount">0</label>/10</p>
+
+        <p><input type="button" value="Reset" id="btnReset"></p>
+
+        <script>
+        </script>
+    </body>
+</html>
