@@ -135,7 +135,7 @@ function clickNumber() {
 function clickReset() {
     'use strict';
 
-    window.location.href = 'file:///home/masan/%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/100Calcs-master/index.html';
+    window.location.href = 'https://masan-k.github.io/n-back/index.html';
 
 }
 
