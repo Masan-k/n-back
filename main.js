@@ -60,10 +60,28 @@ function showTime() {
 function setAnswer() {
     'use strict';
 
-    eLblLeftQ.innerText = getRandom(MIN, MAX);
-    eLblRightQ.innerText = getRandom(MIN, MAX);
+　　var leftQ,rightQ,ansWork;
 
-    ans.push((String(Number(eLblLeftQ.innerText) + Number(eLblRightQ.innerText))).slice(-1));
+    while(true) {
+     
+        leftQ = getRandom(MIN, MAX);
+        rightQ =  getRandom(MIN, MAX);
+
+        ansWork = (String(leftQ + rightQ)).slice(-1);
+
+        if(ans.length === 0) {
+            break;
+        } else {
+            if (ans[ans.length - 1] !== ansWork) {
+                break;
+            }
+        }
+    }
+
+    eLblLeftQ.innerText = leftQ;
+    eLblRightQ.innerText = rightQ;
+
+    ans.push(ansWork);
 }
 
 function startStopWatch() {
