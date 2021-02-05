@@ -115,6 +115,8 @@ function clickNumber() {
         currectCount = currectCount + 1;
         eLblCurrectCount.innerText = currectCount;
 
+　　　　eLblAsterisk.innerText = "OK";
+
         if (ans.length + currectCount < 10) {
             setAnswer();
             currentAns = ans.shift();
@@ -144,6 +146,7 @@ function clickNumber() {
         }
 
     } else {
+        eLblAsterisk.innerText = "NG";
         incurrectCount = incurrectCount + 1;
         lblIncurrectCount.innerText = incurrectCount;
         
@@ -213,7 +216,7 @@ function showQuestion() {
 
         if (ans.length > level) {
             clearInterval(intervalID)
-            eLblAsterisk.style.visibility ="hidden";
+            eLblAsterisk.innerText ="START!!";
             setInput();
             
             currentAns = ans.shift();
