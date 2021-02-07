@@ -20,6 +20,7 @@ var eLblLeftQ,
     eLblTime,
     eLblCurrectCount,
     eLblIncurrectCount,
+    eLblQuestionCount,
     eBtnReset,
     intervalID,
     level,
@@ -27,7 +28,8 @@ var eLblLeftQ,
     startDate,
     currentAns,
     currectCount,
-    incurrectCount;
+    incurrectCount,
+    questionCount;
 
 function showTime() {
     'use strict';
@@ -117,11 +119,11 @@ function clickNumber() {
 
 　　　　eLblAsterisk.innerText = "OK";
 
-        if (ans.length + currectCount < 10) {
+        if (ans.length + currectCount < questionCount) {
             setAnswer();
             currentAns = ans.shift();
 
-        } else if (currectCount === 10) {
+        } else if (currectCount === questionCount) {
             eLblLeftQ.innerText = "Clear";
             eLblRightQ.innerText = "!!";
             started = 0;
@@ -175,6 +177,7 @@ function init() {
     eLblTime = document.getElementById("lblTime");
     eLblCurrectCount = document.getElementById("lblCurrectCount");
     eLblIncurrectCount = document.getElementById("lblIncurrectCount");
+    eLblQuestionCount = document.getElementById("lblQuestionCount");
 
 
     eBtnOne = document.getElementById("btnOne")
@@ -263,8 +266,10 @@ window.onload = function () {
 
     init();
 
-    level = param[1]
-
+    level = param[1];
+    questionCount = Number(level) + 10;
+    eLblQuestionCount.innerText = questionCount;
+ 
     setAnswer();
     setWait();
 
