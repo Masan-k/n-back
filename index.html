@@ -19,7 +19,14 @@
                 padding: 10px;
             }
             #cvsToday {
-                background-color: #EEE;
+                background-color: #FFF;
+                border: solid 0.1em;
+                border-color: #DDD;
+            }
+            #cvsLastYear {
+                background-color: #FFF;
+                border: solid 0.1em;
+                border-color: #DDD;
             }
         </style>
         <script type="text/javascript" src="menu.js"></script>
@@ -32,9 +39,11 @@
         <br>
 
         <h1>PERFORMANCE</h1>
-        <h2>Today</h2>
+        <h2>Today(Time)</h2>
         <canvas id="cvsToday" width="800" height="400"></canvas>
         
+        <h2>Number of achievements up to last year</h2>
+        <canvas id="cvsLastYear" width="800" height="150"></canvas>
         
         <h1>ABOUT</h1>
         <p>It is a brain training app for training the working memory of the brain.</p>
