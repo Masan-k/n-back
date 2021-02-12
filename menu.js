@@ -37,6 +37,7 @@ function drawCtxToday() {
         i,
         X_BLANK_WIDTH = 60,
         Y_BLANK_WIDTH = 50,
+        RECT_LENGTH = 10,
         keys,
         appKey,
         level,
@@ -75,6 +76,27 @@ function drawCtxToday() {
     nowDate = new Date();
     todayYmd = nowDate.getFullYear() + ('00' + (nowDate.getMonth()+1)).slice(-2) + ('00' + nowDate.getDate()).slice(-2);
 
+    ctx.textBaseline = 'top';
+    ctx.strokeText('1', 525, 370);
+    ctx.fillStyle = getRectColor(0);
+    ctx.fillRect(528, 373, RECT_LENGTH, RECT_LENGTH)
+    
+    ctx.fillStyle = getRectColor(2);
+    ctx.fillRect(540, 373, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(4);
+    ctx.fillRect(552, 373, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(6);
+    ctx.fillRect(564, 373, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(8);
+    ctx.fillRect(576, 373, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.strokeText('Level 5', 625, 370);
+
+
+
     for(var key in localStorage) {
 
         keys = key.split(',');
@@ -94,8 +116,7 @@ function drawCtxToday() {
                 
                 if (currentLevel !== level) {
                     ctx.lineWidth = '3.0';
-                    ctx.globalAlpha = level / 5;
-                    ctx.strokeStyle = 'blue';
+                    ctx.strokeStyle = getRectColor((level - 1) * 2);
 
                     currentLevel = level;                   
                     ctx.lineTo(X_BLANK_WIDTH - 20, 350);    
