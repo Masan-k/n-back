@@ -8,3 +8,5 @@ https://masan-k.github.io/n-back/
 
 ## Original
 https://apps.apple.com/jp/app/n-back/id551544969
+
+I made it myself because I wanted to see the transition of the record.
