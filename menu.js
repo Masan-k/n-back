@@ -1,6 +1,5 @@
 ﻿/*globals window, document, setInterval, event , localStorage */
 
-
 function clickbtnStart() {
     'use strict';
     
@@ -21,120 +20,13 @@ function init() {
     lblTitle = document.getElementById("lblTitle")
     lblTitle.innerText = "n-back";
 
-    for (i = 1; i <= 5; i += 1) {
+    for (i = 1; i <= 10; i += 1) {
         option_add = document.createElement("option");
         option_add.value = i;
         option_add.text = i;
         cmbLevel.appendChild(option_add);
     }
     
-}
-
-function drawCtxToday() {
-    'use strict';
-
-    var ctx,
-        i,
-        X_BLANK_WIDTH = 60,
-        Y_BLANK_WIDTH = 50,
-        RECT_LENGTH = 10,
-        keys,
-        appKey,
-        level,
-        dateYmd,
-        dateTime,
-        todayYmd,
-        nowDate,
-        scorePos,
-        timePos,
-        currentLevel;
-
-    ctx = cvsToday.getContext('2d');  
-    ctx.lineWidth = '0.2';
-    
-    for(i = 1; i <= 13; i += 1) {
-        ctx.beginPath();
-        ctx.lineTo(i * X_BLANK_WIDTH - 20, 50);
-        ctx.lineTo(i * X_BLANK_WIDTH - 20, 350);
-        ctx.closePath();
-        ctx.stroke();
-        ctx.strokeText(i * 2 - 2, i * X_BLANK_WIDTH - 20, 360);
-    }
-
-    for(i = 1; i <= 7; i += 1) {
-        ctx.beginPath();
-        ctx.lineTo(X_BLANK_WIDTH - 20, i * 50);
-        ctx.lineTo(X_BLANK_WIDTH * 13 - 20, i * 50);
-        ctx.closePath();
-        ctx.stroke();
-
-        ctx.textAlign = 'right'
-        ctx.strokeText(350 - i * 50, X_BLANK_WIDTH - 25, i * 50);
-    }
-
-    currentLevel = -1;
-    nowDate = new Date();
-    todayYmd = getDateYmd(nowDate);
-
-    ctx.textBaseline = 'top';
-    ctx.strokeText('1', 525, 370);
-    ctx.fillStyle = getRectColor(0);
-    ctx.fillRect(528, 373, RECT_LENGTH, RECT_LENGTH)
-    
-    ctx.fillStyle = getRectColor(2);
-    ctx.fillRect(540, 373, RECT_LENGTH, RECT_LENGTH)
-
-    ctx.fillStyle = getRectColor(4);
-    ctx.fillRect(552, 373, RECT_LENGTH, RECT_LENGTH)
-
-    ctx.fillStyle = getRectColor(6);
-    ctx.fillRect(564, 373, RECT_LENGTH, RECT_LENGTH)
-
-    ctx.fillStyle = getRectColor(8);
-    ctx.fillRect(576, 373, RECT_LENGTH, RECT_LENGTH)
-
-    ctx.strokeText('Level 5', 625, 370);
-
-
-
-    for(var key in localStorage) {
-
-        keys = key.split(',');
-
-        if(keys.length === 3) {
-
-            appKey = keys[0];
-            dateYmd = keys[2].slice(0,8);
-
-            //Today(Time)
-            if (appKey === 'N-BACK' && todayYmd === dateYmd) {
-
-                level = keys[1];
-                dateTime = keys[2].slice(8);
-
-                ctx.beginPath();
-                
-                if (currentLevel !== level) {
-                    ctx.lineWidth = '3.0';
-                    ctx.strokeStyle = getRectColor((level - 1) * 2);
-
-                    currentLevel = level;                   
-                    ctx.lineTo(X_BLANK_WIDTH - 20, 350);    
-                } else {
-                    ctx.lineTo(X_BLANK_WIDTH - 20 + timePos, 350 - scorePos);                
-                }
-
-                scorePos = Math.round(localStorage.getItem(key).split(',')[0]);
-                timePos = Math.round((Number(dateTime.slice(0, 2)) + (Number(dateTime.slice(2, 4)) / 60)) * 30);
-
-                ctx.lineTo(X_BLANK_WIDTH - 20 + timePos ,350 - scorePos);
-
-                ctx.closePath();
-                ctx.stroke();                  
-                               
-            }
-        }
-    }
 }
 
 function getRecord() {
@@ -180,9 +72,20 @@ function getRectColor(count){
         return '#00D65D';
     }else if(count <= 6){
         return '#00AF4A';
-    }else {
+    }else if(count <= 8){
         return '#007839';
+    }else if(count <= 10){
+        return '#aaffff';
+    }else if(count <= 12){
+        return '#80bfff';
+    }else if(count <= 14){
+        return '#0080ff';
+    }else if(count <= 16){
+        return '#0055aa';
+    }else{
+        return '#ff0000';
     }
+
 }
 
 function getDateYmd(date) {
@@ -216,7 +119,7 @@ function drawCtxCarrelation() {
     let ctx = cvsCarrelation.getContext('2d');  
     ctx.lineWidth = '0.5';
     ctx.textBaseline = 'top';
-    ctx.strokeText('1', 600, 390);
+    ctx.strokeText('1', 615, 390);
     ctx.fillStyle = getRectColor(0);
     ctx.fillRect(628, 393, RECT_LENGTH, RECT_LENGTH);
     
@@ -231,7 +134,23 @@ function drawCtxCarrelation() {
 
     ctx.fillStyle = getRectColor(8);
     ctx.fillRect(676, 393, RECT_LENGTH, RECT_LENGTH);
-    ctx.strokeText('Level5', 695, 390);
+
+    ctx.fillStyle = getRectColor(10);
+    ctx.fillRect(688, 393, RECT_LENGTH, RECT_LENGTH);
+
+    ctx.fillStyle = getRectColor(12);
+    ctx.fillRect(700, 393, RECT_LENGTH, RECT_LENGTH);
+
+    ctx.fillStyle = getRectColor(14);
+    ctx.fillRect(712, 393, RECT_LENGTH, RECT_LENGTH);
+
+    ctx.fillStyle = getRectColor(16);
+    ctx.fillRect(724, 393, RECT_LENGTH, RECT_LENGTH);
+
+    ctx.fillStyle = getRectColor(18);
+    ctx.fillRect(736, 393, RECT_LENGTH, RECT_LENGTH);
+
+    ctx.strokeText('Level10', 756, 390);
 
     const X_LINE_COUNT_CALC = 6;
     const NBACK_MAX_COUNT = 6;
@@ -292,7 +211,9 @@ function drawCtxCarrelation() {
         ctx.closePath();
         ctx.stroke();
 
-        ctx.strokeText(targetDateYmd[i].slice(4,8), i * X_BLANK_WIDTH + INIT_BLANK_WIDTH - 10, INIT_BLANK_HEIGHT + Y_BLANK_WIDTH * X_LINE_COUNT_CALC);
+        if(i !== targetDateYmd.length -1){
+            ctx.strokeText(targetDateYmd[i].slice(4,8), i * X_BLANK_WIDTH + INIT_BLANK_WIDTH - 10, INIT_BLANK_HEIGHT + Y_BLANK_WIDTH * X_LINE_COUNT_CALC);
+        }
     }
 
     //---------------------
@@ -303,7 +224,7 @@ function drawCtxCarrelation() {
     //100Calcs
     //=========
     let isOpen = false;
-    ctx.lineWidth = '2.0';
+    ctx.lineWidth = '1.2';
     for(let key in localStorage) {
         let keys = key.split(',');
 
@@ -504,7 +425,6 @@ function getSortDate(record){
     }
 }
 
-
 function drawCtxLastYear() {
     'use strict';
 
@@ -554,7 +474,23 @@ function drawCtxLastYear() {
     ctx.fillStyle = getRectColor(8);
     ctx.fillRect(576, 133, RECT_LENGTH, RECT_LENGTH)
 
-    ctx.strokeText('More', 595, 130);
+    ctx.fillStyle = getRectColor(10);
+    ctx.fillRect(588, 133, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(12);
+    ctx.fillRect(600, 133, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(14);
+    ctx.fillRect(612, 133, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(16);
+    ctx.fillRect(624, 133, RECT_LENGTH, RECT_LENGTH)
+
+    ctx.fillStyle = getRectColor(18);
+    ctx.fillRect(636, 133, RECT_LENGTH, RECT_LENGTH)
+
+
+    ctx.strokeText('More', 656, 130);
 
 
     for(var x = 0; x <= HORIZONTAL_COUNT - 1; x++){
@@ -603,7 +539,6 @@ window.onload = function () {
     btnStart = document.getElementById("btnStart");
     btnStart.addEventListener("click", clickbtnStart, false); 
 
-    drawCtxToday();
     drawCtxLastYear();
     drawCtxCarrelation();
 
