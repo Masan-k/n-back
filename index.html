@@ -18,6 +18,12 @@
                 margin: 10px;
                 padding: 10px;
             }
+            #cvsCarrelation {
+                background-color: #FFF;
+                border: solid 0.1em;
+                border-color: #DDD;
+            }
+
             #cvsToday {
                 background-color: #FFF;
                 border: solid 0.1em;
@@ -38,20 +44,26 @@
         <p> <input type="button" value="Start" id="btnStart"> </p>
         <br>
 
-        <h1>PERFORMANCE</h1>        
+        <h2>PERFORMANCE</h2>        
 
-        <h2>Number of achievements up to last year</h2>
+        <h3>Correlation between n-back and 100calc</h3>
+        <canvas id="cvsCarrelation" width="1020" height="420"></canvas>
+        
+        <h3>Number of achievements up to last year</h3>
         <canvas id="cvsLastYear" width="800" height="150"></canvas>
 
-        <h2>Today(Time)</h2>
+        <h3>Today(Time)</h3>
         <canvas id="cvsToday" width="800" height="400"></canvas>
         
 
-        <h1>ABOUT</h1>
+        <h2>ABOUT</h2>
         <p>It is a brain training app for training the working memory of the brain.</p>
 
-        <h1>Original</h1>
-        <p>https://apps.apple.com/jp/app/n-back/id551544969</p>
+        <h2>Original</h2>
+        <p><a href="https://apps.apple.com/jp/app/n-back/id551544969">apps.apple.com/jp/app/n-back</a></p>
+
+        <h2>LINK</h2>
+        <p><a href="https://masan-k.github.io/100Calcs/100calcs.html">100Calcs</a></p>
 
         <script>
             init();
