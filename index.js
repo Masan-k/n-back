@@ -3,8 +3,8 @@
 function clickbtnStart() {
     'use strict';
     
-    //window.location.href = 'main.html?level=' + cmbLevel.value;
-    window.location.href = 'https://masan-k.github.io/n-back/main.html?level=' + cmbLevel.value;
+    window.location.href = 'main.html?level=' + cmbLevel.value;
+    //window.location.href = 'https://masan-k.github.io/n-back/main.html?level=' + cmbLevel.value;
 
 }
 
@@ -111,6 +111,38 @@ function getTargetDateYmd() {
     return targetDateYmd;
 }
 
+function getCalcRecord(){
+    'use strict';
+    let result = [];
+    for(let key in localStorage) {
+	    let keys = key.split(',');
+	    if(keys.length === 2 && keys[0] === '100CALCS' && keys[1].slice(0,8) === keys[1].slice(0,8)) {
+		result.push(key);
+	    }
+
+    }
+    return result;
+}
+
+function setSortDateRecord(rec){
+
+    let workRec = rec.splice();
+    let newRec = [];
+    let minIndex = -1;
+    while(newRec < rec.length){
+	let minDate = '999999999999' //yyyymmddhhmmss
+	for(let i in workRec){
+	    let date = workRec[i].split(',')[1];
+	    if(date < minDate){
+		minDate = date;
+		minIndex = i;
+	    }
+	}
+	newRec.push(workRec[minIndex]);
+	workRec.splice(minIndex, 1);
+    }
+    rec = newRec;
+}
 function drawCtxCarrelation() {
     'use strict';
 
@@ -225,7 +257,10 @@ function drawCtxCarrelation() {
     //=========
     let isOpen = false;
     ctx.lineWidth = '1.2';
-    for(let key in localStorage) {
+
+    let rec = getCalcRecord();
+    setSortDateRecord(rec);
+    for(let key of rec) {
         let keys = key.split(',');
 
         if(keys.length === 2 && keys[0] === '100CALCS' && keys[1].slice(0,8) === keys[1].slice(0,8)) {

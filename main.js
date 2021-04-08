@@ -158,7 +158,7 @@ function clickNumber() {
 function clickReset() {
     'use strict';
 
-    window.location.href = 'https://masan-k.github.io/n-back/index.html';
+    window.location.href = 'index.html';
 
 }
 
