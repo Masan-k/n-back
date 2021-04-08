@@ -126,21 +126,37 @@ function getCalcRecord(){
 
 function getSortDateRecord(rec){
 
-    let workRec = rec.splice();
+    //console.log('getSort01');
+    //console.log('rec:' + rec);
+    //console.log('rec.length:' + rec.length);
+    //console.log('rec.slice(): ' + rec.slice());
+    
+    let workRec = rec.slice();
     let newRec = [];
     let minIndex = -1;
-    while(newRec < rec.length){
+
+    //console.log('workRec:' + workRec);
+    
+    while(newRec.length < rec.length){
+	//console.log('while');
 	let minDate = '999999999999' //yyyymmddhhmmss
 	for(let i in workRec){
 	    let date = workRec[i].split(',')[1];
+	    //console.log('date Check');
+	    //console.log('date -> ' + date);
 	    if(date < minDate){
 		minDate = date;
 		minIndex = i;
 	    }
 	}
+	//console.log('push');
+	//console.log('minIndex: ' + minIndex);
 	newRec.push(workRec[minIndex]);
 	workRec.splice(minIndex, 1);
     }
+
+    //console.log('getSort02');
+    //console.log('newRec:' + newRec);
     return newRec;
 }
 function drawCtxCarrelation() {
@@ -260,12 +276,21 @@ function drawCtxCarrelation() {
 
     let rec = getCalcRecord();
     rec = getSortDateRecord(rec);
-    for(let ket of rec){
-	console.log('ket -> '+ ket);
-    }
+    //console.log('rec.length -> ' + rec.length);
+    //console.log('rec -> ' + rec);
+    //console.log('call test 1(of)');
 
-    for(let key of rec) {
-        let keys = key.split(',');
+    //for(let ket of rec){
+//	console.log('ket -> '+ ket);
+//    }
+//    console.log('call test 2(in)');
+//    for(let i in rec){
+//	console.log('rec[i] -> '+ rec[i]);
+//    }
+    
+
+    for(let i in rec) {
+        let keys = rec[i].split(',');
 
         if(keys.length === 2 && keys[0] === '100CALCS' && keys[1].slice(0,8) === keys[1].slice(0,8)) {
 
@@ -281,8 +306,9 @@ function drawCtxCarrelation() {
                     let hours = Number(keys[1].slice(8,10));
                     let minutes = Number(keys[1].slice(10,12));
                     
-                    ctx.lineTo(i * X_BLANK_WIDTH + hours * 2.5 + minutes / 24 + INIT_BLANK_WIDTH, (INIT_BLANK_HEIGHT + Y_BLANK_WIDTH * NBACK_MAX_COUNT - Number(localStorage.getItem(key))));
+                    //ctx.lineTo(i * X_BLANK_WIDTH + hours * 2.5 + minutes / 24 + INIT_BLANK_WIDTH, (INIT_BLANK_HEIGHT + Y_BLANK_WIDTH * NBACK_MAX_COUNT - Number(localStorage.getItem(key))));
 
+                    ctx.lineTo(i * X_BLANK_WIDTH + hours * 2.5 + minutes / 24 + INIT_BLANK_WIDTH, (INIT_BLANK_HEIGHT + Y_BLANK_WIDTH * NBACK_MAX_COUNT - Number(localStorage.getItem(rec[i]))));
                     break outer;
                 }
             }
