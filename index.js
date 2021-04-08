@@ -260,6 +260,10 @@ function drawCtxCarrelation() {
 
     let rec = getCalcRecord();
     setSortDateRecord(rec);
+    for(let ket of rec){
+	console.log('ket -> '+ ket);
+    }
+
     for(let key of rec) {
         let keys = key.split(',');
 
