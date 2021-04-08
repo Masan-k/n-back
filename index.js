@@ -124,7 +124,7 @@ function getCalcRecord(){
     return result;
 }
 
-function setSortDateRecord(rec){
+function getSortDateRecord(rec){
 
     let workRec = rec.splice();
     let newRec = [];
@@ -259,7 +259,7 @@ function drawCtxCarrelation() {
     ctx.lineWidth = '1.2';
 
     let rec = getCalcRecord();
-    rec = SortDateRecord(rec);
+    rec = getSortDateRecord(rec);
     for(let ket of rec){
 	console.log('ket -> '+ ket);
     }
